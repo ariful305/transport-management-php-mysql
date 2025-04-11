@@ -4,8 +4,8 @@ ini_set('display_errors', 1);
 include("./db/admin/shedule.php");
 include($_SERVER['DOCUMENT_ROOT']."/db/admin/route.php");
 $route = all_route();
-if (isset($_GET["route_name"]) && !empty($_GET["route_name"])) {
-    $route_name = $_GET["route_name"]; 
+if (isset($_REQUEST["route_name"]) && !empty($_REQUEST["route_name"])) {
+    $route_name = $_REQUEST["route_name"]; 
     $data = search_shedule($route_name);
 } else {
     $data = all_shedule(); 
@@ -28,7 +28,7 @@ ob_start();
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="col-md-10 mb-3">
-                            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
+                            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
                                 <div class="row">
                                     <div class="col-4">
                                         <input  list="route" type="search" name="route_name"  class="form-control" placeholder="Search by route name" value="<?php echo isset($_GET['route_name']) ? $_GET['route_name'] : ''; ?>">
@@ -102,7 +102,7 @@ ob_start();
                                 }
                                 ?>
                             </tbody>
-                            <tfoot>
+                            <!-- <tfoot>
                                 <tr>
                                     <th>Sl.</th>
                                     <th>Route Name</th>
@@ -111,7 +111,7 @@ ob_start();
                                     <th>Departure Time</th>
                                     <th>Available</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot> -->
                         </table>
                         <!-- /.col -->
                     </div>

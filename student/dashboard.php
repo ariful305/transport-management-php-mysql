@@ -1,16 +1,20 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 $title = "Dashboard";
 
-include($_SERVER['DOCUMENT_ROOT'] . "./db/admin/shedule.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/db/admin/shedule.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/db/student/transport.php");
 
 
 $check = check_reg();
+$check['route_name'] = ($check['start_point'] == 'DSC') ? $check['end_point'] : $check['start_point'];
+
 if ($check == false) {
   $data = NULL;
 }
 else{
-  $data =  search_shedule($check['route_id']);
+  $data =  search_shedule($check['route_name']);
 }
 
 ob_start();
@@ -104,7 +108,7 @@ ob_start();
                                 ?>
                             </tbody>
                             <tfoot>
-                                <tr>
+                                <!-- <tr>
                                     <th>Sl.</th>
                                     <th>Route Name</th>
                                     <th>Bus Number</th>
@@ -112,7 +116,7 @@ ob_start();
                                     <th>Departure Time</th>
                                     <th>Available</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot> -->
                         </table>
                         <!-- /.col -->
                     </div>
