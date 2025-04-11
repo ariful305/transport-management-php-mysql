@@ -35,7 +35,7 @@ ORDER BY sh.departure_time DESC";
 return $shedule;
 }
 
-function search_shedule($id="NULL")
+function search_shedule($name="NULL")
 {
     global $conn;    
     $query = "SELECT   
@@ -45,11 +45,13 @@ function search_shedule($id="NULL")
     sh.departure_time,                      
     r.route_name,
     b.bus_number,   
-    b.capacity
+    b.capacity,
+    b.driver_name
     FROM shedule_buses sh
     JOIN buses b ON sh.bus_id = b.id
     JOIN routes r ON sh.route_id = r.id
-    WHERE sh.route_id = $id
+    WHERE sh.route_id IN (Select id from routes where route_name LIKE '%$name%' OR start_point LIKE '%$name%' OR end_point LIKE '%$name%') 
+    OR sh.bus_id IN (Select id from buses where bus_number LIKE '%$name%')
     ORDER BY sh.departure_time DESC";
 
     $result = mysqli_query($conn, $query);   

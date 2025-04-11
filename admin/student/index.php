@@ -55,7 +55,15 @@ include("../../db/admin/student.php");
                                 ?>
                                         <tr>
                                             <td><?php echo $i++; ?></td>
-                                            <td><img src="../../student/<?php echo $row['image'] ?>" alt="Student Image" width="50px"></td>
+                                            <td>
+                                                <?php
+                                                if(!empty($row['image'])) {
+                                                    echo '<img src="../../student/' . $row['image'] . '" alt="Student Image" width="50px">';
+                                                } else {
+                                                    echo '<img src="/admin/uploads/avatar.png" alt="Default Image" width="50px">';
+                                                }
+                                               ?>
+                                            </td>
                                             <td><?php echo $row['student_id']; ?></td>
                                             <td><?php echo $row['first_name'] . " " . $row['last_name']; ?></td>
                                             <td><?php echo $row['department']  ?></td>

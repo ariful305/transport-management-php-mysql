@@ -4,9 +4,9 @@ ini_set('display_errors', 1);
 include("./db/admin/shedule.php");
 include($_SERVER['DOCUMENT_ROOT']."/db/admin/route.php");
 $route = all_route();
-if (isset($_GET["route_id"]) && !empty($_GET["route_id"])) {
-    $route_id = intval($_GET["route_id"]); 
-    $data = search_shedule($route_id);
+if (isset($_GET["route_name"]) && !empty($_GET["route_name"])) {
+    $route_name = $_GET["route_name"]; 
+    $data = search_shedule($route_name);
 } else {
     $data = all_shedule(); 
 }
@@ -21,8 +21,9 @@ ob_start();
 
             <div class="col-10 mt-3">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-flex">
                         <h3><b>Transport shedule</b></h3>
+                        <a href="./login.php" class="btn btn-primary btn-md ml-3">Login</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -30,12 +31,13 @@ ob_start();
                             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
                                 <div class="row">
                                     <div class="col-4">
-                                        <select name="route_id" id="route_id" class="form-control">
-                                            <option value="">Select Route</option>
-                                            <?php foreach ($route as $r) { ?>
-                                                <option value="<?php echo $r['id']; ?>"><?php echo $r['route_name']; ?></option>
-                                            <?php } ?>
-                                        </select>
+                                        <input  list="route" type="search" name="route_name"  class="form-control" placeholder="Search by route name" value="<?php echo isset($_GET['route_name']) ? $_GET['route_name'] : ''; ?>">
+                                        <datalist id="route">
+                                        <?php foreach ($route as $r) { ?>
+                                                <option value="<?php echo $r['route_name']; ?>"><?php echo $r['route_name']; ?></option>
+                                        <?php } ?>
+                                        </datalist>
+                                       
                                     </div>
                                     <div class="col">
                                         <button type="submit" class="btn btn-primary">Search</button>
