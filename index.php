@@ -1,9 +1,12 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
 include("./db/admin/shedule.php");
 include($_SERVER['DOCUMENT_ROOT']."/db/admin/route.php");
+
 $route = all_route();
+
 if (isset($_REQUEST["route_name"]) && !empty($_REQUEST["route_name"])) {
     $route_name = $_REQUEST["route_name"]; 
     $data = search_shedule($route_name);
@@ -31,7 +34,7 @@ ob_start();
                             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
                                 <div class="row">
                                     <div class="col-4">
-                                        <input  list="route" type="search" name="route_name"  class="form-control" placeholder="Search by route name" value="<?php echo isset($_GET['route_name']) ? $_GET['route_name'] : ''; ?>">
+                                        <input  list="route" type="search" name="route_name"  class="form-control" placeholder="Search by route name" value="<?php echo isset($_REQUEST['route_name']) ? $_REQUEST['route_name'] : ''; ?>">
                                         <datalist id="route">
                                         <?php foreach ($route as $r) { ?>
                                                 <option value="<?php echo $r['route_name']; ?>"><?php echo $r['route_name']; ?></option>
@@ -59,7 +62,6 @@ ob_start();
                             <tbody>
                                 <?php
                                 $i = 1;
-
                                 if (empty($data)) {
                                     echo '<tr><td colspan="7" class="text-center">No students found</td></tr>';
                                 } else {
@@ -77,8 +79,7 @@ ob_start();
                                             </td>
                                             <td>
                                                 <?php
-                                                $departure_time = $row['departure_time']; // Example departure time (HH:MM:SS format)
-                                                // Get current time in Bangladesh time zone (Asia/Dhaka)
+                                                $departure_time = $row['departure_time']; 
                                                 $dateTime = new DateTime("now", new DateTimeZone('Asia/Dhaka'));
                                                 $current_time = $dateTime->format('H:i:s');
 

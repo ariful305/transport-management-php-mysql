@@ -146,7 +146,6 @@ if ($conn->query($sql) === TRUE) {
 $adminUsername = "admin";
 $adminPassword = md5("123456789");
 $adminEmail = "admin@gmail.com";
-$adminName = "System Administrator";
 
 $sql = "INSERT IGNORE INTO users (username, password, email , role, status) 
         VALUES ('$adminUsername', '$adminPassword', '$adminEmail', 'admin', 'approved')";

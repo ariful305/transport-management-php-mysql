@@ -9,6 +9,16 @@ $total_student = $data[0];
 $total_bus = $data[1];
 $total_route = $data[2];
 $total_earn = $data[3];
+if(isset($_SESSION['user_id'])) {
+  // Redirect based on user role
+  if($_SESSION['role'] == 'admin') {
+      header("Location: ../admin/dashboard.php");
+  } else {
+      header("Location: ../student/dashboard.php");
+  }
+  exit;
+}
+
 ob_start();
 ?>
 

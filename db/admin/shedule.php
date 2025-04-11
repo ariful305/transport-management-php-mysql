@@ -17,7 +17,7 @@ function all_shedule()
 FROM shedule_buses sh
 JOIN buses b ON sh.bus_id = b.id
 JOIN routes r ON sh.route_id = r.id
-ORDER BY sh.departure_time DESC";
+ORDER BY sh.departure_time ASC";
 
     $result = mysqli_query($conn, $query);   
    // Check if query was successful
@@ -52,7 +52,7 @@ function search_shedule($name="NULL")
     JOIN routes r ON sh.route_id = r.id
     WHERE sh.route_id IN (Select id from routes where route_name LIKE '%$name%' OR start_point LIKE '%$name%' OR end_point LIKE '%$name%') 
     OR sh.bus_id IN (Select id from buses where bus_number LIKE '%$name%')
-    ORDER BY sh.departure_time DESC";
+    ORDER BY sh.departure_time ASC";
 
     $result = mysqli_query($conn, $query);   
    // Check if query was successful

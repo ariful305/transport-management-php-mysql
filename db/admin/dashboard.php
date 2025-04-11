@@ -4,11 +4,10 @@ include ($_SERVER['DOCUMENT_ROOT'] ."/db/db.php");
 
 function count_all(){
     global $conn;
-    global $conn;
     $total_student = "SELECT count(*) FROM transport_applications";
     $total_bus = "SELECT count(*) FROM buses";
     $total_route = "SELECT count(*) FROM routes";
-    $total_earn = "SELECT sum(paid_amount) FROM transport_applications";
+    $total_earn = "S    ELECT sum(paid_amount) FROM transport_applications WHERE application_status = 'approved'";
     $result_student = mysqli_query($conn, $total_student);
     $result_bus = mysqli_query($conn, $total_bus);
     $result_route = mysqli_query($conn, $total_route);

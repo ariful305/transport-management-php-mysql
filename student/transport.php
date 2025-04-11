@@ -1,4 +1,8 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $title = "Apply for Transport";
 include($_SERVER['DOCUMENT_ROOT'] . "/db/student/transport.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/db/admin/route.php");

@@ -6,7 +6,7 @@ include ($_SERVER['DOCUMENT_ROOT'] ."/db/db.php");
 function all_route()
 {
     global $conn;    
-    $query = "SELECT *  FROM routes";
+    $query = "SELECT *  FROM routes ";
     $result = mysqli_query($conn, $query);   
     return $result;
 }
