@@ -1,14 +1,5 @@
     # Ignore frontend assets
-    resources/js/** linguist-vendored
-    node_modules/** linguist-vendored
-
-    # Ignore public assets
-    public/** linguist-generated
-
-
-    # Ignore template/demo files
-    demo/** linguist-generated
+    asset/** linguist-vendored
 
     # Force PHP
     *.php linguist-language=PHP
-    *.blade.php linguist-language=PHP
